@@ -19,8 +19,9 @@
 <body>
 
 <div id="Main">
-	<form id="Form">
-		<input id="Input1" type="text" name="Input" value="Write here">
+	<form id="Form" onsubmit="return false; preventDefault();">
+	<input id="input1" type="text" name="Input" Value="Enter Command" autocomplete="off">
+	<textarea id="output" readonly></textarea>
 	</form>
 </div>
 
