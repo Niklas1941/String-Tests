@@ -1,7 +1,17 @@
+//Make array for inpast typed things
+Mem = [""];
+var pos = 0;
+
+var v = document.getElementById('input1');
+var o = document.getElementById('output');
+
 function Read(){
-	var v = document.getElementById('input1');
-	var o = document.getElementById('output');
 	var mv = v.value;
+
+	//Is the input empty
+	if (mv == ""){
+		return;
+	} 
 
 	//Check for slash
 	var slash = mv.search("/");
@@ -9,7 +19,7 @@ function Read(){
 	if (slash == 0){
 		//Init the key words
 		var array1 = ["shout", "clear", "help"];  //Keep these two arrays same length
-		var array2 = ["You can shout things","Clear the output","Show this \"Window\""]; //It's easer to do it this way, but maeby i will combine them... maybe...
+		var array2 = ["You can shout things","Clear the output","Show this \"Window\""]; //It's easer to do it this way, but maybe i will combine them... maybe...
 		mv = mv.toLowerCase();
 		//console.log(mv);
 
@@ -46,9 +56,13 @@ function Read(){
 
 			case "help":
 
-				for (var i = 0; i < array1.length; i++) {
+				o.value += "\r\n";
+
+				for (var i = 0; i < array1.length; i++) {  //In here i assume i have those two arrays at same lenght
 					o.value += "/" + array1[i] + " - " + array2[i] + "\r\n"; 
 				}
+
+				o.value += "\r\n";
 			break;
 
 			default:
@@ -62,8 +76,28 @@ function Read(){
 		o.value += v.value + "\r\n";
 	}
 
+	//add things to array
+	Mem.push(v.value);
+	console.log(Mem);
+	
+	if(Mem.length >= 5){
+		Mem.splice(0,1);
+	}
+
 	v.value = "";
+	o.scrollTop = o.scrollHeight;
 } 
+
+function GetLast()
+{
+	if (pos >= Mem.length){
+		pos = 0;
+	}
+
+	v.value = Mem[Mem.length - pos];
+	console.log(pos);
+	console.log(Mem[Mem.length]);
+}
 
 function SubmitFunction(evt) {
   	evt.preventDefault();
@@ -74,6 +108,11 @@ document.addEventListener('keyup', function (e) {
 	if (e.key == 'Enter') {
 	   	Read();
 	}
+
+	if (e.key == 'ArrowUp'){
+		GetLast();
+	}
+	
 });
 
 
