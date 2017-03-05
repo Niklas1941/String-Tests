@@ -6,22 +6,22 @@
 #Form{
 	margin-left: auto;
 	margin-right: auto;
-	width: 200px;
+	width: 300px;
 	height: 100%;
 }
 
 #Main{
 	margin: auto;
 	margin-top: 50px;
-	width: 250px;
+	width: 350px;
 	height: 100%;
 	border: 1px solid black;
 }
 
 #output{
 	resize: none;
-	width: 200px;
-	height: 200px;
+	width: inherit;
+	height: 300px;
 	margin-top: 20px;
 	margin-bottom: 20px;
 
@@ -29,5 +29,5 @@
 
 #input1{
 	margin-top: 20px;
-	width: 200px;
+	width: inherit;
 }

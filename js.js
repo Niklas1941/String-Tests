@@ -1,5 +1,5 @@
 //Make array for inpast typed things
-Mem = [""];
+var Mem = [""];
 var pos = 0;
 
 var v = document.getElementById('input1');
@@ -18,8 +18,8 @@ function Read(){
 
 	if (slash == 0){
 		//Init the key words
-		var array1 = ["shout", "clear", "help"];  //Keep these two arrays same length
-		var array2 = ["You can shout things","Clear the output","Show this \"Window\""]; //It's easer to do it this way, but maybe i will combine them... maybe...
+		var array1 = ["shout", "clear", "help", "clear mem"];  //Keep these two arrays same length
+		var array2 = ["You can shout things","Clear the output","Show this \"Window\"", "Clears typing memory"]; //It's easer to do it this way, but maybe i will combine them... maybe...
 		mv = mv.toLowerCase();
 		//console.log(mv);
 
@@ -65,6 +65,16 @@ function Read(){
 				o.value += "\r\n";
 			break;
 
+			case "clear mem":
+
+				Mem.splice(1, Mem.length - 1);
+				console.log(Mem);
+				o.value += "Array cleared! \r\n"
+				v.value = "";
+				return;
+
+			break;
+
 			default:
 				o.value += "Command not found" + "\r\n";
 
@@ -78,25 +88,31 @@ function Read(){
 
 	//add things to array
 	Mem.push(v.value);
-	console.log(Mem);
+	//console.log(Mem.length);
 	
-	if(Mem.length >= 5){
-		Mem.splice(0,1);
+	if(Mem.length >= 6){
+		Mem.splice(1,1);
+		//console.log(Mem.length);
 	}
 
 	v.value = "";
 	o.scrollTop = o.scrollHeight;
+
+	//console.log(Mem);
 } 
 
 function GetLast()
 {
-	if (pos >= Mem.length){
-		pos = 0;
+	pos += 1;
+
+	if (pos > Mem.length){
+		pos = 1;
 	}
 
 	v.value = Mem[Mem.length - pos];
-	console.log(pos);
-	console.log(Mem[Mem.length]);
+	//console.log(pos + " Pos variable");
+	//console.log(Mem.length + " length of the Mem array");
+	//console.log(Mem[Mem.length - pos] + " Word which we are on");
 }
 
 function SubmitFunction(evt) {
